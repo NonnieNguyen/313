@@ -1,5 +1,6 @@
 ; Alan Nguyen CK38254, Peter Scrandis WO68214
 	section .data
+
 shift:		db	"Enter shift value: ", 10
 len_n		equ	$-shift
 
@@ -24,7 +25,7 @@ min_phrase_len: resb 30
 
 	global 	main
 
-main:
+start:
 	call	gshift	;print and store the shift value
 	call	gstring	;print and store the original message
 
@@ -61,6 +62,7 @@ main:
 	syscall
 
 	call 	exit
+
 
 gstring:
 	mov		rax, 1	;prints the request for the original string
