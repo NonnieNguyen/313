@@ -3,44 +3,57 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-struct Messages{
-    char messages[10][1000]; 
-    int position;
-
-};
+#include <stdbool.h>
+char Invalid[1000] = "Invalid Message, Keeping Curent";
 
 // function for displatying all the arrays
-void display(struct Messages test){ // s Or S
+void display(char *arr[]){ // s Or S
     for (int z = 0; z < 10; z++){
-        printf("Message[%d]: %d \n",z, test.messages[z]);
+        printf("Message[%d]: %d \n",z, arr[z]);
     }
 }
 
 // function used to add words to the arrays
 // maybe change return type to help keep track of which message is being changed??
-void read(struct Messages test, char word[]){ //r or R
-    if (*test.messages[0] = ""){
+int read(char *arr[], int position){ //r or R
+    if (arr[0] = ""){
          for (int z = 0; z < 10; z++){
-            *test.messages[z] = "This is the original Message.";
+            arr[z] = "This is the original Message.";
         }
     }
 
     else{
-        int Length = strlen(word);
+        bool run = true;
+        while (run){
+            char word[1000];
+            printf("Enter your message: ");
+            scanf("%s",word);
+
+            int Length = strlen(word);
+
+
+
         if (isupper(word[0]) == 1){
             if (word[Length-1] == "!" && word[Length-1] == "." && word[Length-1] == "?"){
-                *test.messages[test.position] = word;
+                arr[position] = word;
+                position++;
             }
 
             else {
-                printf("Your message does not end with a punctuation mark ");
+                printf("%s", Invalid);           
             }
         }
 
         else{
-            printf("Your message does not start with a captial Letter");
+            printf("%s", Invalid);
         }
     }
+        }
+
+
+        
+
+    return position;
 }
 
 void decrypt(char *arr[]){ // f or F
@@ -49,12 +62,12 @@ void decrypt(char *arr[]){ // f or F
 
 // for testing maybe? Idk how this works
 int main(){
-    struct Messages test;
-
-    test.position = 0;
+    char test[10][1000];
+    int position = 0;
     char temp = "hello";
     char temp2 = "Hello";
-    read(test, temp);
+    read(temp2, test ,position);
+    read(temp2, test ,position);
     display(test);
     return 0;
 
