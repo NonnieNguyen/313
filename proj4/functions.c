@@ -4,23 +4,24 @@
 #include <stdlib.h>
 #include <string.h>
 struct Messages{
-    char m_messages[10][1000];
+    char messages[10][1000]; 
+    int position;
 
 };
 
 // function for displatying all the arrays
-void display(char *arr[]){ // s Or S
+void display(struct Messages test){ // s Or S
     for (int z = 0; z < 10; z++){
-        printf("Message[%d]: %d \n",z, arr[z]);
+        printf("Message[%d]: %d \n",z, test.messages[z]);
     }
 }
 
 // function used to add words to the arrays
 // maybe change return type to help keep track of which message is being changed??
-void read(char *arr[],char word[], int place){ //r or R
-    if (arr[0 == ""]){
+void read(struct Messages test, char word[]){ //r or R
+    if (*test.messages[0] = ""){
          for (int z = 0; z < 10; z++){
-             arr[z] = "This is the original Message.";
+            *test.messages[z] = "This is the original Message.";
         }
     }
 
@@ -28,7 +29,7 @@ void read(char *arr[],char word[], int place){ //r or R
         int Length = strlen(word);
         if (isupper(word[0]) == 1){
             if (word[Length-1] == "!" && word[Length-1] == "." && word[Length-1] == "?"){
-                arr[place] = word;
+                *test.messages[test.position] = word;
             }
 
             else {
@@ -50,11 +51,11 @@ void decrypt(char *arr[]){ // f or F
 int main(){
     struct Messages test;
 
-    int place = 2;
+    test.position = 0;
     char temp = "hello";
     char temp2 = "Hello";
-    read(test.m_messages, temp, place);
-    display(test.m_messages);
+    read(test, temp);
+    display(test);
     return 0;
 
 }
