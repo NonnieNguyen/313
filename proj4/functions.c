@@ -3,7 +3,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
+struct Messages{
+    char m_messages[10][1000];
+
+};
 
 // function for displatying all the arrays
 void display(char *arr[]){ // s Or S
@@ -45,12 +48,13 @@ void decrypt(char *arr[]){ // f or F
 
 // for testing maybe? Idk how this works
 int main(){
+    struct Messages test;
+
     int place = 2;
     char temp = "hello";
     char temp2 = "Hello";
-    char words[10][1000];
-    read(words, temp, place);
-    display(words);
+    read(test.m_messages, temp, place);
+    display(test.m_messages);
     return 0;
 
 }
