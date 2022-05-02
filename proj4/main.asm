@@ -1,15 +1,11 @@
-include 'caeser.asm'
-include 'functions.c'
+;include 'caeser.asm'
+extern read
 
     section .data
-menu:		db  "Encryption menu options", 10, 
-                "s - show curent messages", 10, 
-                "r - read new messages", 10, 
-                "c - caesar cypher", 10, 
-                "f - frequency decrypt", 10, 
-                "q - quit program", 10,
-                "enter letter option -> ", 0
-choice		equ $-start6
+menu:		db  "Encryption menu options", 10, "s - show curent messages", 10, "r - read new messages", 10, "c - caesar cypher", 10, "f - frequency decrypt", 10, "q - quit program", 10, "enter letter option -> ", 0
+choice		equ $-menu
+
+new_line	db	10
 
     section .bss
 arr             resq    10
@@ -17,13 +13,24 @@ menu_buff:      resb    2
 string_buff:	resb	1000000
 num_buff:		resb	3
 
+
 section .text
 
 	global 	main
 
 main:
+    mov rcx, 0
+    call makearray
     mov r9, 0 ;position of what string to replace when reading
     jmp gmenu
+
+makearray:
+    mov qword[arr + rcx], 1
+    inc rcx
+    cmp rcx, 10
+    jb  makearray
+
+    ret
 
 gmenu:
     ;prints the menu
