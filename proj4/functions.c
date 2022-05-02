@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-char Invalid[1000] = "Invalid Message, Keeping Curent";
 
 // function for displatying all the arrays
 void display(char *arr[]){ // s Or S
@@ -16,42 +15,36 @@ void display(char *arr[]){ // s Or S
 // function used to add words to the arrays
 // maybe change return type to help keep track of which message is being changed??
 int read(char *arr[], int position){ //r or R
+
+    /*
     if (arr[0] = ""){
          for (int z = 0; z < 10; z++){
             arr[z] = "This is the original Message.";
         }
     }
+    */
 
-    else{
-        bool run = true;
-        while (run){
-            char word[1000];
-            printf("Enter your message: ");
-            scanf("%s",word);
+    char word[1000];
+    
+    printf("Enter your message: ");
+    scanf("%s",word);
 
-            int Length = strlen(word);
+    int Length = strlen(word);
 
-
-
-        if (isupper(word[0]) == 1){
-            if (word[Length-1] == "!" && word[Length-1] == "." && word[Length-1] == "?"){
-                arr[position] = word;
-                position++;
-            }
-
-            else {
-                printf("%s", Invalid);           
-            }
+    if (isupper(word[0]) == 1){
+        if (word[Length-1] == "!" && word[Length-1] == "." && word[Length-1] == "?"){
+            arr[position] = word;
+            position++;
         }
-
-        else{
-            printf("%s", Invalid);
+        
+        else {
+            printf("Invalid Message, Keeping Curent");           
         }
     }
-        }
 
-
-        
+    else{
+        printf("Invalid Message, Keeping Curent");
+    }     
 
     return position;
 }
