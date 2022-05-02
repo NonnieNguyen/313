@@ -25,7 +25,7 @@ int read(char *arr[], int position){ //r or R
     */
 
     char word[1000];
-    
+
     printf("Enter your message: ");
     scanf("%s",word);
 
@@ -34,7 +34,11 @@ int read(char *arr[], int position){ //r or R
     if (isupper(word[0]) == 1){
         if (word[Length-1] == "!" && word[Length-1] == "." && word[Length-1] == "?"){
             arr[position] = word;
-            position++;
+            
+            if (position == 9) position = 0;
+
+            else position++;
+
         }
         
         else {
@@ -45,7 +49,7 @@ int read(char *arr[], int position){ //r or R
     else{
         printf("Invalid Message, Keeping Curent");
     }     
-
+    
     return position;
 }
 
