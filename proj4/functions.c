@@ -10,7 +10,10 @@
 void display(char *arr[]){ // s Or S
     // for loop iterates through the arrays and prints all the messages
     for (int z = 0; z < 10; z++){
-        printf("Message[%d]: %d \n",z, *arr[z]);
+        printf("Message[%d]: ", z);
+        fflush(stdout);
+        fputs(arr[z], stdout);
+        //printf("Message[%d]: %d \n",z, &arr[z]);
     }
 }
 
