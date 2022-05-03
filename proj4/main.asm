@@ -1,36 +1,38 @@
 ;include 'caeser.asm'
 extern read
+extern display
 
     section .data
 menu:		db  "Encryption menu options", 10, "s - show curent messages", 10, "r - read new messages", 10, "c - caesar cypher", 10, "f - frequency decrypt", 10, "q - quit program", 10, "enter letter option -> ", 0
 choice		equ $-menu
 
+ogm:        db  "This is the original message."
+
 new_line	db	10
 
     section .bss
-arr             resq    10
+
+arr resq 10
 menu_buff:      resb    2
 string_buff:	resb	1000000
 num_buff:		resb	3
-
 
 section .text
 
 	global 	main
 
 main:
-    mov rcx, 0
-    call makearray
-    mov r9, 0 ;position of what string to replace when reading
+    push rbp
+	xor r8,r8
+
+init:
+	mov qword[arr+r8], ogm	;sets the first index to num
+	add r8, 8				;increments the index
+	cmp r8, 80				;increments until it reaches the end
+	jl init
+
+    xor r9, r9 ;position of what string to replace when reading
     jmp gmenu
-
-makearray:
-    mov qword[arr + rcx], 1
-    inc rcx
-    cmp rcx, 10
-    jb  makearray
-
-    ret
 
 gmenu:
     ;prints the menu
@@ -48,6 +50,12 @@ gmenu:
     syscall ;be sure to check for more than 1 character, should en in \n
 
 menuaction:
+    xor rcx, rcx
+    cmp byte[menu_buff], 's'
+    je  calldisplay
+    cmp byte[menu_buff], 'S'
+    je  calldisplay
+
     ;jumps to callread if user inputs r or R
     cmp byte[menu_buff], 'r'
     je  callread
@@ -62,8 +70,14 @@ menuaction:
 
     jmp gmenu
 
-callread:
+calldisplay:
+    xor rdi, rdi
     mov rdi, arr
+    call display
+    jmp gmenu
+
+callread:
+    mov rdi, qword[arr + r9*8]
     mov rsi, r9
     call read
     jmp gmenu

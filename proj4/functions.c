@@ -10,7 +10,7 @@
 void display(char *arr[]){ // s Or S
     // for loop iterates through the arrays and prints all the messages
     for (int z = 0; z < 10; z++){
-        printf("Message[%d]: %d \n",z, arr[z]);
+        printf("Message[%d]: %d \n",z, *arr[z]);
     }
 }
 
@@ -58,6 +58,7 @@ int read(char *arr[], int position){ //r or R
     return position;
 }
 
+/*
 // function for the frequency cypher
 void decrypt(char *arr[]){ // f or F
     char Most_Used[5] = FindFrequency(arr);
@@ -100,3 +101,4 @@ char FindFrequency(char arr[]){
     return Most_Used;
 }
 
+*/
