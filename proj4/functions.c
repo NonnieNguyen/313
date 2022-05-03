@@ -10,8 +10,10 @@
 void display(char *arr[]){ // s Or S
     // for loop iterates through the arrays and prints all the messages
     for (int z = 0; z < 10; z++){
-        printf("Message[%d]: ", z); //prints Message[z] :
-        fputs(arr[z], stdout);      //prints Whatever is in index z in the array without printing an empty line
+        printf("Message[%d]: %s", z, arr[z]);
+
+        // printf("Message[%d]: ", z); //prints Message[z] :
+        // fputs(arr[z], stdout);      //prints Whatever is in index z in the array without printing an empty line
     }
 }
 
@@ -25,26 +27,24 @@ int read(char *arr[], int position){ //r or R
 
     //gets(word);
     int Length = strlen(word);
-    printf("%d", Length);
 
     // if statments check if the first Letter is uppercase, and the char before newline is 
-    if (isupper(word[0]) == 1){ 
-        if (&word[Length-1] == "!" && &word[Length-1] == "." && &word[Length-1] == "?"){
+    if (isupper(word[0])){ 
+        if (word[Length-1] == '!' || word[Length-1] == '.' || word[Length-1] == '?'){
             arr[position] = word;
-            
             // if the message is added checks which message was changed and moves to the next one
             if (position == 9) position = 0; 
-
             else position++;
+            printf("\n");
         }
         
         else {
-            printf("Invalid Message, Keeping Curent");           
+            printf("Invalid Message, Keeping Curent \n");           
         }
     }
 
     else{
-        printf("Invalid Message, Keeping Curent");
+        printf("Invalid Message, Keeping Curent \n");
     }     
     
     return position;
