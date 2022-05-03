@@ -18,23 +18,14 @@ void display(char *arr[]){ // s Or S
 // function used to add words to the arrays
 // maybe change return type to help keep track of which message is being changed??
 int read(char *arr[], int position){ //r or R
-
-    /*
-    printf("."); // for testing purposes
-
-    if (arr[0] = ""){
-         for (int z = 0; z < 10; z++){
-            arr[z] = "This is the original Message.";
-        }
-    }
-    printf(","); // for testing purposes
-    */
-
+    printf(".");
     char word[1000];
     printf("Enter your message: ");
     scanf("%s",word);
 
+    //gets(word);
     int Length = strlen(word);
+    printf("%d", Length);
 
     // if statments check if the first Letter is uppercase, and the char before newline is 
     if (isupper(word[0]) == 1){ 
