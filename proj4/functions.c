@@ -6,6 +6,8 @@
 #include <stdbool.h>
 #include <ctype.h>
 
+char FREQ[5] = {'e','t','a','o','i'};
+
 // function for displatying all the arrays
 void display(char *arr[]){ // s Or S
     // for loop iterates through the arrays and prints all the messages
@@ -94,9 +96,42 @@ void decrypt(char *arr[]){ // f or F
 
     // temp
     // for loop prints outs the most used letters
+    printf("Most common letters we are comparing to: ");
     for (int z = 0; z < 5; z++){
-        printf("%c ",Most_Used[z]);
+        printf("%c ",FREQ[z]);
     }
 
-    printf("\n Frequency Shift starts after this \n");
+    printf("\nFrequency Shift starts after this \n");
+
+    char letter;
+    for (int z = 0; z < 5; z++){
+        int shift = FREQ[z] - Most_Used[z];
+        for(int y = 0; y < Length; y++){
+           
+            letter = Temp[y];
+            if (isupper(Temp[y])){
+                letter = letter +32;
+            } 
+
+            if (letter >= 97 && letter <= 122){
+                letter = letter + shift;
+                if (letter > 122){
+                    letter = letter - 26;
+                }
+
+                else if (letter < 97){
+                    letter = letter + 26;
+                }
+            }            
+
+            printf("%c", letter);
+        }
+
+        if (z != 4){
+            printf("\nOR");
+        }
+        
+        printf("\n");
+    }
+
 }
