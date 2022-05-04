@@ -55,22 +55,23 @@ int read(char *arr[], int position){ //r or R
 
 // function for the frequency cypher
 void decrypt(char *arr[]){ // f or F
-    int counter = 0, location, checker, Max = 0;
+    int counter = 0, location, checker, Max = 0, Length, shift;
     int frequency[26] = {0};
-    char Most_Used[5];
+    char Most_Used[5], letter;
 
     
     //printf("Enter string location : ");
     //scanf("%d \n",location);
-
+    //char Message[] = arr[position];
+    //Length = strlength(Message);
     
     // this is for testing to the function
-    char Temp[] = {"This is an Original Message."};
-    int Length = strlen(Temp);
+    char Message[] = {"This is an Original Message."};
+    Length = strlen(Message);
 
     // for loop used for counting the frequency of letters in the message
     for (int z = 0; z < Length; z++){        
-        frequency[ Temp[z] - 'a']++; // gets how far the letter is from a (ascii?)
+        frequency[ Message[z] - 'a']++; // gets how far the letter is from a (ascii?)
     }
 
     // for loop is used for finding the max frequency
@@ -82,11 +83,10 @@ void decrypt(char *arr[]){ // f or F
         }
     }
 
-    //for loop used for for iterating through array to find most used letters
+    //Loop is used for finding the most used letters in the message
     while (counter < 5){         
         for (int i = 0; i < 26; i++) {            
             if (frequency[i] == Max && counter < 5){
-                printf("%c : %d\n",i + 'a', frequency[i]); // gets the letter i letters away from a (ascii?)
                 Most_Used[counter] = i + 'a';
                 ++counter;
             }
@@ -94,25 +94,20 @@ void decrypt(char *arr[]){ // f or F
         Max = Max - 1;
     }    
 
-    // temp
-    // for loop prints outs the most used letters
-    printf("Most common letters we are comparing to: ");
+    // for loop used for checking the 5 the letters being compared
     for (int z = 0; z < 5; z++){
-        printf("%c ",FREQ[z]);
-    }
+        shift = FREQ[z] - Most_Used[z];
 
-    printf("\nFrequency Shift starts after this \n");
-
-    char letter;
-    for (int z = 0; z < 5; z++){
-        int shift = FREQ[z] - Most_Used[z];
+        // for loop used for iterating through the message
         for(int y = 0; y < Length; y++){
-           
-            letter = Temp[y];
-            if (isupper(Temp[y])){
+            letter = Message[y];
+
+            // checks if the letter is uppercase, converts to lowercase if so
+            if (isupper(Message[y])){
                 letter = letter +32;
             } 
 
+            // checks if the char is a lowercase letter, does the shift if so
             if (letter >= 97 && letter <= 122){
                 letter = letter + shift;
                 if (letter > 122){
@@ -134,4 +129,5 @@ void decrypt(char *arr[]){ // f or F
         printf("\n");
     }
 
+    printf("\n");
 }
