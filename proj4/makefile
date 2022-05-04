@@ -1,7 +1,7 @@
 main: main.asm functions.c
-	nasm -f elf64 main.asm
-	gcc -c functions.c
-	gcc -m64 -o main main.o functions.o
+	nasm -f elf64 -g main.asm
+	gcc -c -g functions.c
+	gcc -m64 -g -o main main.o functions.o
 
 run: main
 	./main

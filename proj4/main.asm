@@ -1,19 +1,34 @@
 ;include 'caeser.asm'
 extern read
 extern display
-extern decrypt
+extern malloc
+extern realloc
+extern free
+
+%define ARR_LEN 10
+%define ARR_SIZE 80 ;in bytes
 
     section .data
 menu:		db  "Encryption menu options", 10, "s - show curent messages", 10, "r - read new messages", 10, "c - caesar cypher", 10, "f - frequency decrypt", 10, "q - quit program", 10, "enter letter option -> ", 0
 choice		equ $-menu
 
-ogm:        db  "This is the original message."
+string1:    db  "This is the original message.", 0
+stringLen:  equ $-string1
+string2:    db  "This is the original message."
+string3:    db  "This is the original message."
+string4:    db  "This is the original message."
+string5:    db  "This is the original message."
+string6:    db  "This is the original message."
+string7:    db  "This is the original message."
+string8:    db  "This is the original message."
+string9:    db  "This is the original message."
+string10:   db  "This is the original message."
 
 new_line	db	10
 
     section .bss
 
-arr resq 10
+arr resq ARR_LEN
 menu_buff:      resb    2
 string_buff:	resb	1000000
 num_buff:		resb	3
@@ -27,9 +42,25 @@ main:
 	xor r8,r8
 
 init:
-	mov qword[arr+r8], ogm	;sets the first index to num
+    ;; allocate memory for new array, store value of r8 on stack
+    push r8
+    sub rsp, 8  ; align stack pointer
+    mov rdi, stringLen
+    call malloc
+    add rsp, 8  ; un-do stack operations
+    pop r8
+	mov qword[arr+r8], rax	;sets the first index to the allocated pointer
+    ;; make a deep copy of the string
+    xor r9, r9
+strDeepCopyLoop:
+    mov bl, byte[string1 + r9]
+    mov byte[rax + r9], bl
+    inc r9
+    cmp r9, stringLen
+    jl strDeepCopyLoop
+    
 	add r8, 8				;increments the index
-	cmp r8, 80				;increments until it reaches the end
+	cmp r8, ARR_SIZE    	;increments until it reaches the end
 	jl init
 
     xor r9, r9 ;position of what string to replace when reading
@@ -63,13 +94,6 @@ menuaction:
     cmp byte[menu_buff], 'R'
     je  callread
 
-    ;jumps to callread if user inputs r or R
-    cmp byte[menu_buff], 'f'
-    je  callfreq
-    cmp byte[menu_buff], 'F'
-    je  callread
-
-
     ;jumps to exit if user inputs q or Q
     cmp byte[menu_buff], 'q'
     je exit
@@ -90,13 +114,11 @@ callread:
     call read
     jmp gmenu
 
-callfreq:
-    xor rdi, rdi
-    mov rdi, arr
-    call decrypt
-    jmp gmenu
-    
 exit:
+    ; free the dynamically allocated memory
+    xor rcx, rcx
+    mov rdi, qword[arr + 8*rcx]     ; move dynamically-allocated string into rdi
+    call free
     ; prints a new line
 	mov		rax, 1
 	mov		rdi, 1
