@@ -50,47 +50,53 @@ int read(char *arr[], int position){ //r or R
     return position;
 }
 
-/*
+
 // function for the frequency cypher
 void decrypt(char *arr[]){ // f or F
-    char Most_Used[5] = FindFrequency(arr);
-
-}
-
-// function used for finding the most used letters in the message
-char FindFrequency(char arr[]){
-    int counter = 0;
+    int counter = 0, location, checker, Max = 0;
     int frequency[26] = {0};
     char Most_Used[5];
+
     
-    // function iterates through the message checking howmany times the letters were used
-    while(arr[counter] != '\n'){
-            frequency[ arr[counter] - 'a']++; // (- 'a') is for converting it into ascii? maybe 
-            counter++;
+    //printf("Enter string location : ");
+    //scanf("%d \n",location);
+
+    
+    // this is for testing to the function
+    char Temp[] = {"This is an Original Message."};
+    int Length = strlen(Temp);
+
+    // for loop used for counting the frequency of letters in the message
+    for (int z = 0; z < Length; z++){        
+        frequency[ Temp[z] - 'a']++; // gets how far the letter is from a (ascii?)
     }
 
-    counter = 0;
-
-    // for loop used for for iterating through array to find most used letters
-    for (int i = 0; i < 26; i++) {
-        if (frequency[i] != 0) {
-            // temp print used to see which letters are the most common
-            printf("%c : %d\n",i + 'a', frequency[i]); // (+ 'a') is for converting it from ascii? maybe 
-
-            // adds the 5 most used letters into an array
-            if (counter < 5){
-                // some way to compare the sizes
-
-                Most_Used[counter] = i + 'a';
-
-                counter++;
+    // for loop is used for finding the max frequency
+    for (int i = 0; i < 26; i++) {            
+        if (frequency[i] != 0){
+            if (frequency[i] > Max){
+                Max = frequency[i];
             }
-
-            
         }
     }
 
-    return Most_Used;
-}
+    //for loop used for for iterating through array to find most used letters
+    while (counter < 5){         
+        for (int i = 0; i < 26; i++) {            
+            if (frequency[i] == Max && counter < 5){
+                printf("%c : %d\n",i + 'a', frequency[i]); // gets the letter i letters away from a (ascii?)
+                Most_Used[counter] = i + 'a';
+                ++counter;
+            }
+        }
+        Max = Max - 1;
+    }    
 
-*/
+    // temp
+    // for loop prints outs the most used letters
+    for (int z = 0; z < 5; z++){
+        printf("%c ",Most_Used[z]);
+    }
+
+    printf("\n Frequency Shift starts after this \n");
+}

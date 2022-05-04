@@ -1,6 +1,7 @@
 ;include 'caeser.asm'
 extern read
 extern display
+extern decrypt
 
     section .data
 menu:		db  "Encryption menu options", 10, "s - show curent messages", 10, "r - read new messages", 10, "c - caesar cypher", 10, "f - frequency decrypt", 10, "q - quit program", 10, "enter letter option -> ", 0
@@ -62,6 +63,13 @@ menuaction:
     cmp byte[menu_buff], 'R'
     je  callread
 
+    ;jumps to callread if user inputs r or R
+    cmp byte[menu_buff], 'f'
+    je  callfreq
+    cmp byte[menu_buff], 'F'
+    je  callread
+
+
     ;jumps to exit if user inputs q or Q
     cmp byte[menu_buff], 'q'
     je exit
@@ -82,6 +90,12 @@ callread:
     call read
     jmp gmenu
 
+callfreq:
+    xor rdi, rdi
+    mov rdi, arr
+    call decrypt
+    jmp gmenu
+    
 exit:
     ; prints a new line
 	mov		rax, 1

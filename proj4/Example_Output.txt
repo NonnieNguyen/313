@@ -1,0 +1,605 @@
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> s
+Message[0]: This is the original message.
+Message[1]: This is the original message.
+Message[2]: This is the original message.
+Message[3]: This is the original message.
+Message[4]: This is the original message.
+Message[5]: This is the original message.
+Message[6]: This is the original message.
+Message[7]: This is the original message.
+Message[8]: This is the original message.
+Message[9]: This is the original message.
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> r
+Enter new message: Hello
+invalid message, keeping current
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> r
+Enter new message: hello.
+invalid message, keeping current
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> r
+Enter new message: Hello this is new 124561@$#%$# why?
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> d
+invalid option, try again
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> s
+Message[0]: Hello this is new 124561@$#%$# why?
+Message[1]: This is the original message.
+Message[2]: This is the original message.
+Message[3]: This is the original message.
+Message[4]: This is the original message.
+Message[5]: This is the original message.
+Message[6]: This is the original message.
+Message[7]: This is the original message.
+Message[8]: This is the original message.
+Message[9]: This is the original message.
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> c
+Enter string location : 1
+Enter shift value: 6
+Current message:  This is the original message.
+Caesar encryption: Znoy oy znk uxomotgr skyygmk.
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> s
+Message[0]: Hello this is new 124561@$#%$# why?
+Message[1]: Znoy oy znk uxomotgr skyygmk.
+Message[2]: This is the original message.
+Message[3]: This is the original message.
+Message[4]: This is the original message.
+Message[5]: This is the original message.
+Message[6]: This is the original message.
+Message[7]: This is the original message.
+Message[8]: This is the original message.
+Message[9]: This is the original message.
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> c
+Enter string location : 0
+Enter shift value: 12
+Current message:  Hello this is new 124561@$#%$# why?
+Caesar encryption: Tqxxa ftue ue zqi 124561@$#%$# itk?
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> s 
+Message[0]: Tqxxa ftue ue zqi 124561@$#%$# itk?
+Message[1]: Znoy oy znk uxomotgr skyygmk.
+Message[2]: This is the original message.
+Message[3]: This is the original message.
+Message[4]: This is the original message.
+Message[5]: This is the original message.
+Message[6]: This is the original message.
+Message[7]: This is the original message.
+Message[8]: This is the original message.
+Message[9]: This is the original message.
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> f
+Enter string location : 1
+pdeo eo pda knecejwh iaoowca.
+OR
+uijt jt uif psjhjobm nfttbhf.
+OR
+pdeo eo pda knecejwh iaoowca.
+OR
+rfgq gq rfc mpgeglyj kcqqyec.
+OR
+vjku ku vjg qtkikpcn oguucig.
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> f
+Enter string location : 0
+ebiil qefp fp kbt 124561@$#%$# tev?
+OR
+ebiil qefp fp kbt 124561@$#%$# tev?
+OR
+lipps xlmw mw ria 124561@$#%$# alc?
+OR
+rovvy drsc sc xog 124561@$#%$# gri?
+OR
+hello this is new 124561@$#%$# why?
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> c
+Enter string location : 9
+Enter shift value: 19
+Current message:  This is the original message.
+Caesar encryption: Mabl bl max hkbzbgte fxlltzx.
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> s
+Message[0]: Tqxxa ftue ue zqi 124561@$#%$# itk?
+Message[1]: Znoy oy znk uxomotgr skyygmk.
+Message[2]: This is the original message.
+Message[3]: This is the original message.
+Message[4]: This is the original message.
+Message[5]: This is the original message.
+Message[6]: This is the original message.
+Message[7]: This is the original message.
+Message[8]: This is the original message.
+Message[9]: Mabl bl max hkbzbgte fxlltzx.
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> f
+Enter string location : 9
+jxyi yi jxu ehywydqb cuiiqwu.
+OR
+estd td esp zctrtylw xpddlrp.
+OR
+pdeo eo pda knecejwh iaoowca.
+OR
+ymnx nx ymj twnlnsfq rjxxflj.
+OR
+estd td esp zctrtylw xpddlrp.
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> c
+Enter string location : 2
+Enter shift value: 2
+Current message:  This is the original message.
+Caesar encryption: Vjku ku vjg qtkikpcn oguucig.
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> r
+Enter new message: jfj
+invalid message, keeping current
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> s
+Message[0]: Tqxxa ftue ue zqi 124561@$#%$# itk?
+Message[1]: Znoy oy znk uxomotgr skyygmk.
+Message[2]: Vjku ku vjg qtkikpcn oguucig.
+Message[3]: This is the original message.
+Message[4]: This is the original message.
+Message[5]: This is the original message.
+Message[6]: This is the original message.
+Message[7]: This is the original message.
+Message[8]: This is the original message.
+Message[9]: Mabl bl max hkbzbgte fxlltzx.
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> r
+Enter new message: This is a much longer string but not as long as it could be because it could be waaayyyyyyyyyy longer!
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> s
+Message[0]: Tqxxa ftue ue zqi 124561@$#%$# itk?
+Message[1]: This is a much longer string but not as long as it could be because it could be waaayyyyyyyyyy longer!
+Message[2]: Vjku ku vjg qtkikpcn oguucig.
+Message[3]: This is the original message.
+Message[4]: This is the original message.
+Message[5]: This is the original message.
+Message[6]: This is the original message.
+Message[7]: This is the original message.
+Message[8]: This is the original message.
+Message[9]: Mabl bl max hkbzbgte fxlltzx.
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> f
+Enter string location : 2
+pdeo eo pda knecejwh iaoowca.
+OR
+uijt jt uif psjhjobm nfttbhf.
+OR
+pdeo eo pda knecejwh iaoowca.
+OR
+jxyi yi jxu ehywydqb cuiiqwu.
+OR
+vjku ku vjg qtkikpcn oguucig.
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> f
+Enter string location : 8
+pdeo eo pda knecejwh iaoowca.
+OR
+sghr hr sgd nqhfhmzk ldrrzfd.
+OR
+pdeo eo pda knecejwh iaoowca.
+OR
+ftue ue ftq adusuzmx yqeemsq.
+OR
+lzak ak lzw gjayafsd ewkksyw.
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> c
+Enter string location : 1
+Enter shift value: 1
+Current message:  This is a much longer string but not as long as it could be because it could be waaayyyyyyyyyy longer!
+Caesar encryption: Uijt jt b nvdi mpohfs tusjoh cvu opu bt mpoh bt ju dpvme cf cfdbvtf ju dpvme cf xbbbzzzzzzzzzz mpohfs!
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> f
+Enter string location : 1
+znoy oy g sain rutmkx yzxotm haz tuz gy rutm gy oz iuarj hk hkigayk oz iuarj hk cgggeeeeeeeeee rutmkx!
+OR
+cqrb rb j vdlq uxwpna bcarwp kdc wxc jb uxwp jb rc lxdum kn knljdbn rc lxdum kn fjjjhhhhhhhhhh uxwpna!
+OR
+pdeo eo w iqyd hkjcan opnejc xqp jkp wo hkjc wo ep ykqhz xa xaywqoa ep ykqhz xa swwwuuuuuuuuuu hkjcan!
+OR
+this is a much longer string but not as long as it could be because it could be waaayyyyyyyyyy longer!
+OR
+jxyi yi q cksx bedwuh ijhydw rkj dej qi bedw qi yj sekbt ru rusqkiu yj sekbt ru mqqqoooooooooo bedwuh!
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> r
+Enter new message: Ok lets try to fill the array!
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> r
+Enter new message: This might actually take awhile but we can do it!!
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> r
+Enter new message: Here is a rando character string 12465152#$%^&*123565#$%^&*.
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> r  
+Enter new message: Is we still going?
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> s
+Message[0]: Tqxxa ftue ue zqi 124561@$#%$# itk?
+Message[1]: Uijt jt b nvdi mpohfs tusjoh cvu opu bt mpoh bt ju dpvme cf cfdbvtf ju dpvme cf xbbbzzzzzzzzzz mpohfs!
+Message[2]: Ok lets try to fill the array!
+Message[3]: This might actually take awhile but we can do it!!
+Message[4]: Here is a rando character string 12465152#$%^&*123565#$%^&*.
+Message[5]: Is we still going?
+Message[6]: This is the original message.
+Message[7]: This is the original message.
+Message[8]: This is the original message.
+Message[9]: Mabl bl max hkbzbgte fxlltzx.
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> r
+Enter new message: Gosh we still have like 4 more!
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> r
+Enter new message: This is annoying!
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> r
+Enter new message: Help me please...
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> r
+Enter new message: Idk why I thought this project was a good idea, boy was it a tough solution to code, them frequency analysis things really can be annoying to think through and that isnt even the real frequenc analysis, like we could have gone nuts with it.
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> s
+Message[0]: Tqxxa ftue ue zqi 124561@$#%$# itk?
+Message[1]: Uijt jt b nvdi mpohfs tusjoh cvu opu bt mpoh bt ju dpvme cf cfdbvtf ju dpvme cf xbbbzzzzzzzzzz mpohfs!
+Message[2]: Ok lets try to fill the array!
+Message[3]: This might actually take awhile but we can do it!!
+Message[4]: Here is a rando character string 12465152#$%^&*123565#$%^&*.
+Message[5]: Is we still going?
+Message[6]: Gosh we still have like 4 more!
+Message[7]: This is annoying!
+Message[8]: Help me please...
+Message[9]: Idk why I thought this project was a good idea, boy was it a tough solution to code, them frequency analysis things really can be annoying to think through and that isnt even the real frequenc analysis, like we could have gone nuts with it.
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> r
+Enter new message: Ok we should wrap around now and go to the top, yay!!!
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> s
+Message[0]: Ok we should wrap around now and go to the top, yay!!!
+Message[1]: Uijt jt b nvdi mpohfs tusjoh cvu opu bt mpoh bt ju dpvme cf cfdbvtf ju dpvme cf xbbbzzzzzzzzzz mpohfs!
+Message[2]: Ok lets try to fill the array!
+Message[3]: This might actually take awhile but we can do it!!
+Message[4]: Here is a rando character string 12465152#$%^&*123565#$%^&*.
+Message[5]: Is we still going?
+Message[6]: Gosh we still have like 4 more!
+Message[7]: This is annoying!
+Message[8]: Help me please...
+Message[9]: Idk why I thought this project was a good idea, boy was it a tough solution to code, them frequency analysis things really can be annoying to think through and that isnt even the real frequenc analysis, like we could have gone nuts with it.
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> r
+Enter new message: Hey that worked!
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> s
+Message[0]: Ok we should wrap around now and go to the top, yay!!!
+Message[1]: Hey that worked!
+Message[2]: Ok lets try to fill the array!
+Message[3]: This might actually take awhile but we can do it!!
+Message[4]: Here is a rando character string 12465152#$%^&*123565#$%^&*.
+Message[5]: Is we still going?
+Message[6]: Gosh we still have like 4 more!
+Message[7]: This is annoying!
+Message[8]: Help me please...
+Message[9]: Idk why I thought this project was a good idea, boy was it a tough solution to code, them frequency analysis things really can be annoying to think through and that isnt even the real frequenc analysis, like we could have gone nuts with it.
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> c
+Enter string location : 9
+Enter shift value: 20
+Current message:  Idk why I thought this project was a good idea, boy was it a tough solution to code, them frequency analysis things really can be annoying to think through and that isnt even the real frequenc analysis, like we could have gone nuts with it.
+Caesar encryption: Cxe qbs C nbioabn nbcm jlidywn qum u aiix cxyu, vis qum cn u nioab mifoncih ni wixy, nbyg zlykoyhws uhufsmcm nbcham lyuffs wuh vy uhhischa ni nbche nblioab uhx nbun cmhn ypyh nby lyuf zlykoyhw uhufsmcm, fcey qy wiofx bupy aihy honm qcnb cn.
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> s
+Message[0]: Ok we should wrap around now and go to the top, yay!!!
+Message[1]: Hey that worked!
+Message[2]: Ok lets try to fill the array!
+Message[3]: This might actually take awhile but we can do it!!
+Message[4]: Here is a rando character string 12465152#$%^&*123565#$%^&*.
+Message[5]: Is we still going?
+Message[6]: Gosh we still have like 4 more!
+Message[7]: This is annoying!
+Message[8]: Help me please...
+Message[9]: Cxe qbs C nbioabn nbcm jlidywn qum u aiix cxyu, vis qum cn u nioab mifoncih ni wixy, nbyg zlykoyhws uhufsmcm nbcham lyuffs wuh vy uhhischa ni nbche nblioab uhx nbun cmhn ypyh nby lyuf zlykoyhw uhufsmcm, fcey qy wiofx bupy aihy honm qcnb cn.
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> f
+Enter string location : 0
+ea mu ixekbt mhqf qhekdt dem qdt we je jxu jef, oqo!!!
+OR
+vr dl zovbsk dyhw hyvbuk uvd huk nv av aol avw, fhf!!!
+OR
+ok we should wrap around now and go to the top, yay!!!
+OR
+aw iq etagxp idmb mdagzp zai mzp sa fa ftq fab, kmk!!!
+OR
+gc ow kzgmdv ojsh sjgmfv fgo sfv yg lg lzw lgh, qsq!!!
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> f
+Enter string location : 9
+tov hsj t eszfrse estd aczupne hld l rzzo topl, mzj hld te l ezfrs dzwfetzy ez nzop, espx qcpbfpynj lylwjdtd estyrd cplwwj nly mp lyyzjtyr ez estyv esczfrs lyo esle tdye pgpy esp cplw qcpbfpyn lylwjdtd, wtvp hp nzfwo slgp rzyp yfed htes te.
+OR
+xsz lwn x iwdjvwi iwxh egdytri lph p vdds xstp, qdn lph xi p idjvw hdajixdc id rdst, iwtb ugtfjtcrn pcpanhxh iwxcvh gtpaan rpc qt pccdnxcv id iwxcz iwgdjvw pcs iwpi xhci tktc iwt gtpa ugtfjtcr pcpanhxh, axzt lt rdjas wpkt vdct cjih lxiw xi.
+OR
+vqx jul v gubhtug guvf cebwrpg jnf n tbbq vqrn, obl jnf vg n gbhtu fbyhgvba gb pbqr, gurz serdhrapl nanylfvf guvatf ernyyl pna or naablvat gb guvax guebhtu naq gung vfag rira gur erny serdhrap nanylfvf, yvxr jr pbhyq unir tbar ahgf jvgu vg.
+OR
+wry kvm w hvciuvh hvwg dfcxsqh kog o uccr wrso, pcm kog wh o hciuv gczihwcb hc qcrs, hvsa tfseisbqm obozmgwg hvwbug fsozzm qob ps obbcmwbu hc hvwby hvfciuv obr hvoh wgbh sjsb hvs fsoz tfseisbq obozmgwg, zwys ks qcizr vojs ucbs bihg kwhv wh.
+OR
+wry kvm w hvciuvh hvwg dfcxsqh kog o uccr wrso, pcm kog wh o hciuv gczihwcb hc qcrs, hvsa tfseisbqm obozmgwg hvwbug fsozzm qob ps obbcmwbu hc hvwby hvfciuv obr hvoh wgbh sjsb hvs fsoz tfseisbq obozmgwg, zwys ks qcizr vojs ucbs bihg kwhv wh.
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> f
+Enter string location : 9
+tov hsj t eszfrse estd aczupne hld l rzzo topl, mzj hld te l ezfrs dzwfetzy ez nzop, espx qcpbfpynj lylwjdtd estyrd cplwwj nly mp lyyzjtyr ez estyv esczfrs lyo esle tdye pgpy esp cplw qcpbfpyn lylwjdtd, wtvp hp nzfwo slgp rzyp yfed htes te.
+OR
+xsz lwn x iwdjvwi iwxh egdytri lph p vdds xstp, qdn lph xi p idjvw hdajixdc id rdst, iwtb ugtfjtcrn pcpanhxh iwxcvh gtpaan rpc qt pccdnxcv id iwxcz iwgdjvw pcs iwpi xhci tktc iwt gtpa ugtfjtcr pcpanhxh, axzt lt rdjas wpkt vdct cjih lxiw xi.
+OR
+vqx jul v gubhtug guvf cebwrpg jnf n tbbq vqrn, obl jnf vg n gbhtu fbyhgvba gb pbqr, gurz serdhrapl nanylfvf guvatf ernyyl pna or naablvat gb guvax guebhtu naq gung vfag rira gur erny serdhrap nanylfvf, yvxr jr pbhyq unir tbar ahgf jvgu vg.
+OR
+wry kvm w hvciuvh hvwg dfcxsqh kog o uccr wrso, pcm kog wh o hciuv gczihwcb hc qcrs, hvsa tfseisbqm obozmgwg hvwbug fsozzm qob ps obbcmwbu hc hvwby hvfciuv obr hvoh wgbh sjsb hvs fsoz tfseisbq obozmgwg, zwys ks qcizr vojs ucbs bihg kwhv wh.
+OR
+wry kvm w hvciuvh hvwg dfcxsqh kog o uccr wrso, pcm kog wh o hciuv gczihwcb hc qcrs, hvsa tfseisbqm obozmgwg hvwbug fsozzm qob ps obbcmwbu hc hvwby hvfciuv obr hvoh wgbh sjsb hvs fsoz tfseisbq obozmgwg, zwys ks qcizr vojs ucbs bihg kwhv wh.
+
+Encryption menu options:
+s - show current messages
+r - read new message
+c - caesar cipher
+f - frequency decrypt
+q - quit program
+enter option letter -> q
+Goodbye!
