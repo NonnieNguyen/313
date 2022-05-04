@@ -1,9 +1,9 @@
-;include 'caeser.asm'
 extern read
 extern display
 extern malloc
 extern realloc
 extern free
+extern decrypt
 
 %define ARR_LEN 10
 %define ARR_SIZE 80 ;in bytes
@@ -11,6 +11,9 @@ extern free
     section .data
 menu:		db  "Encryption menu options", 10, "s - show curent messages", 10, "r - read new messages", 10, "c - caesar cypher", 10, "f - frequency decrypt", 10, "q - quit program", 10, "enter letter option -> ", 0
 choice		equ $-menu
+
+invalid:    db  "invalid option, try again"
+wrong       equ $-invalid
 
 string1:    db  "This is the original message.", 0
 stringLen:  equ $-string1
@@ -42,7 +45,7 @@ main:
 	xor r8,r8
 
 init:
-    ;; allocate memory for new array, store value of r8 on stack
+    ; allocate memory for new array, store value of r8 on stack
     push r8
     sub rsp, 8  ; align stack pointer
     mov rdi, stringLen
@@ -50,7 +53,7 @@ init:
     add rsp, 8  ; un-do stack operations
     pop r8
 	mov qword[arr+r8], rax	;sets the first index to the allocated pointer
-    ;; make a deep copy of the string
+    ; make a deep copy of the string
     xor r9, r9
 strDeepCopyLoop:
     mov bl, byte[string1 + r9]
@@ -67,6 +70,11 @@ strDeepCopyLoop:
     jmp gmenu
 
 gmenu:
+    mov rax, 1
+	mov rdi, 1
+	mov rsi, new_line
+	mov rdx, 1
+	syscall
     ;prints the menu
     mov rax, 1
     mov rdi, 1
@@ -81,6 +89,9 @@ gmenu:
     mov rdx, 2
     syscall ;be sure to check for more than 1 character, should en in \n
 
+    cmp byte[menu_buff + 1], 10
+    jne toclear
+
 menuaction:
     xor rcx, rcx
     cmp byte[menu_buff], 's'
@@ -94,6 +105,11 @@ menuaction:
     cmp byte[menu_buff], 'R'
     je  callread
 
+    cmp byte[menu_buff], 'f'
+    je  calldecrypt
+    cmp byte[menu_buff], 'f'
+    je  calldecrypt
+
     ;jumps to exit if user inputs q or Q
     cmp byte[menu_buff], 'q'
     je exit
@@ -101,6 +117,30 @@ menuaction:
     je exit
 
     jmp gmenu
+
+toclear:
+    mov rax, 1
+    mov rdi, 1
+    mov rsi, invalid
+    mov rdx, wrong
+    syscall
+
+    mov rax, 1
+	mov rdi, 1
+	mov rsi, new_line
+	mov rdx, 1
+	syscall
+
+clearing:
+    mov rax, 0
+	mov rdi, 0
+	mov rsi, menu_buff ; gets the leftover char, if number was greater than 2 digits
+	mov rdx, 1 ; double digit number + enter
+	syscall
+
+	cmp byte[menu_buff], 10 ;checks if the byte is a newline char
+	jne clearing ; if not newline char, loops back to the next char
+	jmp gmenu
 
 calldisplay:
     xor rdi, rdi
@@ -114,18 +154,24 @@ callread:
     call read
     jmp gmenu
 
+calldecrypt:
+    xor rdi,rdi
+    mov rdi, arr
+    call decrypt
+    jmp gmenu
+
 exit:
     ; free the dynamically allocated memory
     xor rcx, rcx
     mov rdi, qword[arr + 8*rcx]     ; move dynamically-allocated string into rdi
     call free
     ; prints a new line
-	mov		rax, 1
-	mov		rdi, 1
-	mov		rsi, new_line
-	mov		rdx, 1
+	mov rax, 1
+	mov rdi, 1
+	mov rsi, new_line
+	mov rdx, 1
 	syscall
 
-	mov 	rax, 60
-	xor 	rdi, rdi
+	mov rax, 60
+	xor rdi, rdi
 	syscall

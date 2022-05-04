@@ -198,6 +198,7 @@ subalpha:
 	sub		byte[string_buff + rcx], al
 	jmp 	incr
 
+/*
 exit:
 	; prints a new line
 	mov		rax, 1
@@ -209,3 +210,4 @@ exit:
 	mov 	rax, 60
 	xor 	rdi, rdi
 	syscall
+*/
