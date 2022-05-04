@@ -22,7 +22,6 @@ void display(char *arr[]){ // s Or S
 // function used to add words to the arrays
 // maybe change return type to help keep track of which message is being changed??
 int read(char *arr[], int position){ //r or R
-    printf(".");
     char word[1000];
     printf("Enter your message: ");
     scanf("%s",word);
