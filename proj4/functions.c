@@ -6,17 +6,14 @@
 #include <stdbool.h>
 #include <ctype.h>
 
-char FREQ[5] = {'e','t','a','o','i'};
 
 // function for displatying all the arrays
 void display(char *arr[]){ // s Or S
     // for loop iterates through the arrays and prints all the messages
     for (int z = 0; z < 10; z++){
         printf("Message[%d]: %s", z, arr[z]);
-
-        // printf("Message[%d]: ", z); //prints Message[z] :
-        // fputs(arr[z], stdout);      //prints Whatever is in index z in the array without printing an empty line
     }
+    printf("\n");
 }
 
 // function used to add words to the arrays
@@ -54,6 +51,7 @@ int read(char *arr[], int position){ //r or R
 
 // function for the frequency cypher
 void decrypt(char *arr[]){ // f or F
+    char FREQ[5] = {'e','t','a','o','i'};
     int counter = 0, location, checker, Max = 0, Length, shift;
     int frequency[26] = {0};
     char Most_Used[5], letter;
