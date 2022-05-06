@@ -150,11 +150,11 @@ clearstr:
 
 loop: 
 	; method used for checking if the char is uppercased or lowercased 
-	mov 	al, 'A'
+	mov 	al, 65
 	cmp		byte[string_buff + rcx], al
 	jl		incr 
 
-	mov 	al, 'Z'
+	mov 	al, 90
 	cmp 	byte[string_buff + rcx], al
 	jle		upper 
 

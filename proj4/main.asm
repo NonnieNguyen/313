@@ -17,15 +17,6 @@ wrong       equ $-invalid
 
 string1:    db  "This is the original message.", 0
 stringLen:  equ $-string1
-string2:    db  "This is the original message."
-string3:    db  "This is the original message."
-string4:    db  "This is the original message."
-string5:    db  "This is the original message."
-string6:    db  "This is the original message."
-string7:    db  "This is the original message."
-string8:    db  "This is the original message."
-string9:    db  "This is the original message."
-string10:   db  "This is the original message."
 
 new_line	db	10
 
@@ -35,6 +26,7 @@ arr resq ARR_LEN
 menu_buff:      resb    2
 string_buff:	resb	1000000
 num_buff:		resb	3
+replace_index:  resd    8
 
 section .text
 
@@ -43,7 +35,7 @@ section .text
 main:
     push rbp
 	xor r8,r8
-
+    
 init:
     ; allocate memory for new array, store value of r8 on stack
     push r8
@@ -66,7 +58,8 @@ strDeepCopyLoop:
 	cmp r8, ARR_SIZE    	;increments until it reaches the end
 	jl init
 
-    xor r9, r9 ;position of what string to replace when reading
+
+    mov qword[replace_index], 0     ;position of what string to replace when reading
     jmp gmenu
 
 gmenu:
@@ -93,7 +86,7 @@ gmenu:
     jne toclear
 
 menuaction:
-    xor rcx, rcx
+    ;xor rcx, rcx
     cmp byte[menu_buff], 's'
     je  calldisplay
     cmp byte[menu_buff], 'S'
@@ -149,22 +142,38 @@ calldisplay:
     jmp gmenu
 
 callread:
-    mov rdi, qword[arr + r9*8]
-    mov rsi, r9
+    mov rdi, arr
+    xor rsi, rsi
+    mov rsi, qword[replace_index]
     call read
+    mov qword[replace_index], rax
+    cmp qword[replace_index], ARR_LEN
+    jae modTen
     jmp gmenu
 
 calldecrypt:
-    xor rdi,rdi
+    xor rdi, rdi
     mov rdi, arr
     call decrypt
+    jmp gmenu
+
+modTen:
+    sub qword[replace_index], ARR_LEN
     jmp gmenu
 
 exit:
     ; free the dynamically allocated memory
     xor rcx, rcx
+freeLoop:
+    push rcx
+    sub rsp, 8  ; align stack pointer
     mov rdi, qword[arr + 8*rcx]     ; move dynamically-allocated string into rdi
     call free
+    add rsp, 8  ; un-do stack operations
+    pop rcx
+    inc rcx             ; for loop type thing, free all memory
+    cmp rcx, ARR_LEN
+    jl freeLoop
     ; prints a new line
 	mov rax, 1
 	mov rdi, 1
