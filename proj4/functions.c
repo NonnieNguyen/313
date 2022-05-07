@@ -61,20 +61,14 @@ void decrypt(char *arr[]){ // f or F
     int counter = 0, location, checker, Max = 0, Length, shift;
     int frequency[26] = {0};
     char Most_Used[5], letter;
-
     
-    //printf("Enter string location : ");
-    //scanf("%d \n",location);
-    //char Message[] = arr[position];
-    //Length = strlength(Message);
-    
-    // this is for testing to the function
-    char Message[] = {"This is an Original Message."};
-    Length = strlen(Message);
+    printf("Enter string location : ");
+    scanf("%d",&location);
+    Length = strlen(arr[location]);
 
     // for loop used for counting the frequency of letters in the message
     for (int z = 0; z < Length; z++){        
-        frequency[ Message[z] - 'a']++; // gets how far the letter is from a (ascii?)
+        frequency[ arr[location][z] - 'a']++; // gets how far the letter is from a (ascii?)
     }
 
     // for loop is used for finding the max frequency
@@ -100,19 +94,26 @@ void decrypt(char *arr[]){ // f or F
     // for loop used for checking the 5 the letters being compared
     for (int z = 0; z < 5; z++){
         shift = FREQ[z] - Most_Used[z];
+        printf("Shift : %d \n",shift);
 
         // for loop used for iterating through the message
         for(int y = 0; y < Length; y++){
-            letter = Message[y];
+            letter = arr[location][y];
 
             // checks if the letter is uppercase, converts to lowercase if so
-            if (isupper(Message[y])){
+            if (isupper(arr[location][y])){
                 letter = letter +32;
             } 
 
             // checks if the char is a lowercase letter, does the shift if so
             if (letter >= 97 && letter <= 122){
-                letter = letter + shift;
+                
+                // checks if the ascii value of the letter would go out of range 
+                if(!(letter+shift >= 97 && letter+shift <= 122)){
+                    letter = letter - 26;
+                }
+                
+                letter = letter + shift;                
                 if (letter > 122){
                     letter = letter - 26;
                 }
@@ -120,6 +121,8 @@ void decrypt(char *arr[]){ // f or F
                 else if (letter < 97){
                     letter = letter + 26;
                 }
+
+                
             }            
 
             printf("%c", letter);
