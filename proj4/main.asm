@@ -4,6 +4,7 @@ extern malloc
 extern realloc
 extern free
 extern decrypt
+extern start
 
 %define ARR_LEN 10
 %define ARR_SIZE 80 ;in bytes
@@ -98,9 +99,14 @@ menuaction:
     cmp byte[menu_buff], 'R'
     je  callread
 
+    cmp byte[menu_buff], 'c'
+    je  callceaser
+    cmp byte[menu_buff], 'C'
+    je  callceaser
+
     cmp byte[menu_buff], 'f'
     je  calldecrypt
-    cmp byte[menu_buff], 'f'
+    cmp byte[menu_buff], 'F'
     je  calldecrypt
 
     ;jumps to exit if user inputs q or Q
@@ -149,6 +155,13 @@ callread:
     mov qword[replace_index], rax
     cmp qword[replace_index], ARR_LEN
     jae modTen
+    jmp gmenu
+
+callceaser:
+    ;xor rdi, rdi
+    ;mov rdi, arr
+    push    qword[arr]
+    call start
     jmp gmenu
 
 calldecrypt:
