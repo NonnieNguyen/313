@@ -16,7 +16,7 @@ choice		equ $-menu
 invalid:    db  "invalid option, try again"
 wrong       equ $-invalid
 
-string1:    db  "This is the original message.", 0
+string1:    db  "This is the original message.", 10, 0
 stringLen:  equ $-string1
 
 new_line	db	10
@@ -158,9 +158,9 @@ callread:
     jmp gmenu
 
 callceaser:
-    ;xor rdi, rdi
-    ;mov rdi, arr
-    push    qword[arr]
+    xor rdi, rdi
+    mov rdi, qword[arr]
+    ;push    qword[arr]
     call start
     jmp gmenu
 

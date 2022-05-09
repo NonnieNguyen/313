@@ -1,16 +1,16 @@
 ; Alan Nguyen CK38254, Peter Scrandis WO68214
 	section .data
 
-shift:		db	"Enter shift value: ", 10
+shift:		db	"Enter shift value: ", 0
 len_n		equ	$-shift
 
 request:	db	"Enter string location: ", 0
 len_r		equ	$-request
 
-current:	db	"Current message: ", 10
+current:	db	"Current message: ", 0
 len_c		equ	$-current
 
-encrypt:	db	"Encryption: ", 10
+encrypt:	db	"Encryption: ", 0
 len_e		equ	$-encrypt
 
 new_line	db	10
@@ -19,6 +19,9 @@ new_line	db	10
 arr	resq	10
 string_buff:	resb	8
 location_buff:	resb	3
+index:	resb	8
+string_len:	resb	8
+
 num_buff:		resb	3
 cipher_offset: 	resb	8	
 min_phrase_len: resb	30
@@ -28,9 +31,12 @@ min_phrase_len: resb	30
 	global 	start
 
 start:
-	;mov	qword[arr], rdi
-	pop qword[arr]
+	mov	qword[arr], rdi
+
 	call	gstring	;print and store the original message
+	xor	rcx, rcx
+	call	getlen
+	mov	qword[string_len], rcx
 	call	gshift	;print and store the shift value
 
 	xor 	rcx, rcx	;clear rcx
@@ -45,8 +51,8 @@ start:
 
 	mov		rax, 1	;print original message
 	mov 	rdi, 1
-	mov		rsi, string_buff
-	mov		rdx, r10
+	mov		rsi, qword[string_buff]
+	mov		rdx, string_len
 	syscall
 
 	xor 	rcx, rcx ;clear rcx
@@ -61,8 +67,8 @@ start:
 
 	mov		rax, 1	;print encrypted message
 	mov 	rdi, 1
-	mov		rsi, string_buff
-	mov		rdx, r10
+	mov		rsi, qword[string_buff]
+	mov		rdx, string_len
 	syscall
 
 	ret
@@ -80,7 +86,7 @@ gstring:
 	mov		rsi, location_buff
 	mov		rdx, 3
 	syscall
-	
+
 	cmp	byte[location_buff + 1], 10 ;checks if the second byte is a newline char
 	je	tofix ;jumps to method for converting num_buff to numbers
 	cmp	byte[location_buff + 2], 10 ; checks if the third byte is a newline char
@@ -94,7 +100,7 @@ tofix:
 	sub 	byte[location_buff + 1], 48 ;subtracting the second byte of numbuff = '2' by 48
 	mov 	al, byte[location_buff] ;move the first byte of num_buff into the last byte of rax(al)
 	cmp 	byte[location_buff + 1], 0
-	jl 		storestring
+	jl 		storeindex
 
 	mov 	rdx, 10 ;set rdx to 10
 	mul 	rdx ;al = al * rdx
@@ -102,30 +108,41 @@ tofix:
 	mov 	dl, byte[location_buff + 1] ;sets the last byte of rdx to the second byte of num_buff(2)
 	add 	rax, rdx ;adds 2 to rax(10) to make it 12
 
-storestring:
+storeindex:
+	mov	qword[index], rax
 
-	mov	rdx, 8
-	mul	rdx
+	mov rax, 1
+	cmp qword[index], rax
+	jl 	gstring
+
+	mov rax, 10
+	cmp qword[index], rax
+	jg	gstring
+
+	mov	rax, 8
+	mul	qword[index]
+	sub	rax, 8
+	mov	qword[index], rax
 
 	mov	rcx, rax
-
-	;mov		rax, 1
-	;mov		rdi, 1
-	;mov		rsi, qword[arr + rcx]
-	;mov		rdx, 50
-	;syscall
-
-	mov	qword[location_buff], rcx
-	mov rdx, qword[arr + rcx]
-	mov	qword[string_buff], rdx ;new 8 byte value is created to store the shift number
+	mov	rax, qword[arr + rcx]
+	mov	qword[string_buff], rax
 
 	mov	rax, 1
-	cmp	qword[string_buff], rax ;checks if the number is less than 0
-	jl	gstring ;restarts and gets new number for shift
-	mov	rax, 10
-	cmp	qword[string_buff], rax ;checks if the number is greater than 25 
-	jg	gstring ;restarts and gets new number for shift
+	mov	rdi, 1
+	mov	rsi, qword[string_buff]
+	mov	rdx, 38
+	syscall
 
+	ret
+
+getlen:
+	cmp	byte[string_buff + rcx], 10
+	je	return
+	inc rcx
+	jmp	getlen
+
+return:
 	ret
 
 gshift:
@@ -250,6 +267,8 @@ subalpha:
 	mov 	al, 26
 	sub		byte[string_buff + rcx], al
 	jmp 	incr
+
+
 
 ;exit:
 	; prints a new line

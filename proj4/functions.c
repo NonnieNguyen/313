@@ -11,7 +11,7 @@
 void display(char *arr[]){ // s Or S
     // for loop iterates through the arrays and prints all the messages
     for (int z = 0; z < 10; z++){
-        printf("Message[%d]: %s \n", z, arr[z]);
+        printf("Message[%d]: %s", z, arr[z]);
     }
 }
 
@@ -39,7 +39,7 @@ int read(char *arr[], int position){ //r or R
             // if the message is added checks which message was changed and moves to the next one
             if (position == 9) position = 0; 
             else position++;
-            printf("\n");
+            //printf("\n");
         }
         
         else {
