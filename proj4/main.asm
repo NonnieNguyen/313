@@ -5,6 +5,7 @@ extern realloc
 extern free
 extern decrypt
 extern start
+extern deallocate
 
 %define ARR_LEN 10
 %define ARR_SIZE 80 ;in bytes
@@ -22,11 +23,14 @@ wrong       equ $-invalid
 string1:    db  "This is the original message.", 0
 stringLen:  equ $-string1
 
+egg_msg:    db  "EASTER EGG! POGCHAMP", 0
+len_e   equ $-egg_msg
+
 new_line	db	10
 
     section .bss
 
-arr resq ARR_LEN
+arr: resq ARR_LEN
 
 location_buff:	resb	2
 index:	resb	8
@@ -34,7 +38,9 @@ index:	resb	8
 menu_buff:      resb    2
 string_buff:	resb	1000000
 num_buff:		resb	3
-replace_index:  resd    8
+replace_index:  resb    8
+
+z_count: resb 8
 
 section .text
 
@@ -94,7 +100,13 @@ gmenu:
     jne toclear
 
 menuaction:
-    ;xor rcx, rcx
+    cmp byte[menu_buff], 'z'
+    je  incz
+    cmp byte[menu_buff], 'Z'
+    je  incz
+
+    mov byte[z_count], 0
+
     cmp byte[menu_buff], 's'
     je  calldisplay
     cmp byte[menu_buff], 'S'
@@ -122,10 +134,6 @@ menuaction:
     cmp byte[menu_buff], 'Q'
     je exit
 
-    ;jmp gmenu
-    cmp byte[menu_buff + 1], 10
-    je  gmenu
-
 toclear:
     mov rax, 1
     mov rdi, 1
@@ -138,6 +146,10 @@ toclear:
 	mov rsi, new_line
 	mov rdx, 1
 	syscall
+
+    cmp byte[menu_buff + 1], 10 ;checks if the byte is a newline char
+	jne clearing ; if not newline char, loops back to the next char
+	jmp gmenu
 
 clearing:
     mov rax, 0
@@ -217,26 +229,28 @@ modTen:
     sub qword[replace_index], ARR_LEN
     jmp gmenu
 
-exit:
-    ; free the dynamically allocated memory
-    xor rcx, rcx
-freeLoop:
-    push rcx
-    sub rsp, 8  ; align stack pointer
-    mov rdi, qword[arr + 8*rcx]     ; move dynamically-allocated string into rdi
-    call free
-    add rsp, 8  ; un-do stack operations
-    pop rcx
-    inc rcx             ; for loop type thing, free all memory
-    cmp rcx, ARR_LEN
-    jl freeLoop
-    ; prints a new line
-	mov rax, 1
-	mov rdi, 1
-	mov rsi, new_line
-	mov rdx, 1
+incz:
+    inc qword[z_count]
+    cmp qword[z_count], 4
+    je  egg
+    jmp toclear
+
+egg:
+    mov qword[z_count], 0
+
+    mov		rax, 1	;prints the request for the original string
+	mov		rdi, 1
+	mov		rsi, egg_msg
+	mov		rdx, len_e
 	syscall
 
+    jmp gmenu
+
+exit:
+    ; free the dynamically allocated memory
+    xor rdi, rdi
+    mov rdi, arr
+    call deallocate
 	mov rax, 60
 	xor rdi, rdi
 	syscall
