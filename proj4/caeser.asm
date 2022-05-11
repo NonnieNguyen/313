@@ -31,12 +31,12 @@ min_phrase_len: resb	30
 	global 	start
 
 start:
-	mov	qword[arr], rdi
+	mov	qword[string_buff], rdi
 
-	call	gstring	;print and store the original message
 	xor	rcx, rcx
 	call	getlen
 	mov	qword[string_len], rcx
+
 	call	gshift	;print and store the shift value
 
 	xor 	rcx, rcx	;clear rcx
@@ -52,7 +52,13 @@ start:
 	mov		rax, 1	;print original message
 	mov 	rdi, 1
 	mov		rsi, qword[string_buff]
-	mov		rdx, string_len
+	mov		rdx, qword[string_len]
+	syscall
+
+	mov		rax, 1
+	mov		rdi, 1
+	mov		rsi, new_line
+	mov		rdx, 1
 	syscall
 
 	xor 	rcx, rcx ;clear rcx
@@ -68,76 +74,29 @@ start:
 	mov		rax, 1	;print encrypted message
 	mov 	rdi, 1
 	mov		rsi, qword[string_buff]
-	mov		rdx, string_len
+	mov		rdx, qword[string_len]
 	syscall
 
-	ret
-
-
-gstring:
-	mov		rax, 1	;prints the request for the original string
+	mov		rax, 1
 	mov		rdi, 1
-	mov		rsi, request
-	mov		rdx, len_r
-	syscall
-
-	mov		rax, 0	;stores the original string
-	mov		rdi, 0
-	mov		rsi, location_buff
-	mov		rdx, 3
-	syscall
-
-	cmp	byte[location_buff + 1], 10 ;checks if the second byte is a newline char
-	je	tofix ;jumps to method for converting num_buff to numbers
-	cmp	byte[location_buff + 2], 10 ; checks if the third byte is a newline char
-	jne	clearlocation; jumps to method for clearing the shift variable if its not a newline char
-
-tofix:
-	; converts num_buff to numbers
-	; checking if correct value was input
-	xor 	rax, rax
-	sub 	byte[location_buff], 48 ;subtracting the first byte of num_buff = '1' by 48
-	sub 	byte[location_buff + 1], 48 ;subtracting the second byte of numbuff = '2' by 48
-	mov 	al, byte[location_buff] ;move the first byte of num_buff into the last byte of rax(al)
-	cmp 	byte[location_buff + 1], 0
-	jl 		storeindex
-
-	mov 	rdx, 10 ;set rdx to 10
-	mul 	rdx ;al = al * rdx
-	xor 	rdx, rdx
-	mov 	dl, byte[location_buff + 1] ;sets the last byte of rdx to the second byte of num_buff(2)
-	add 	rax, rdx ;adds 2 to rax(10) to make it 12
-
-storeindex:
-	mov	qword[index], rax
-
-	mov rax, 1
-	cmp qword[index], rax
-	jl 	gstring
-
-	mov rax, 10
-	cmp qword[index], rax
-	jg	gstring
-
-	mov	rax, 8
-	mul	qword[index]
-	sub	rax, 8
-	mov	qword[index], rax
-
-	mov	rcx, rax
-	mov	rax, qword[arr + rcx]
-	mov	qword[string_buff], rax
-
-	mov	rax, 1
-	mov	rdi, 1
-	mov	rsi, qword[string_buff]
-	mov	rdx, 38
+	mov		rsi, new_line
+	mov		rdx, 1
 	syscall
 
 	ret
 
 getlen:
-	cmp	byte[string_buff + rcx], 10
+	;push	rcx
+	;mov		rax, 1	;print encrypted message
+	;mov 	rdi, 1
+	;mov		sil, byte[string_buff + rcx]
+	;mov		rdx, 1
+	;syscall
+	;pop	rcx
+
+	mov	rdi, qword[string_buff]
+	add	rdi, rcx
+	cmp	byte[rdi], 0
 	je	return
 	inc rcx
 	jmp	getlen
@@ -207,65 +166,55 @@ clearstr:
 	jne 	clearstr ; if not newline char, loops back to the next char
 	jmp 	gshift
 
-clearlocation:
-	mov	rax, 0
-	mov	rdi, 0
-	mov	rsi, location_buff ; gets the leftover char, if number was greater than 2 digits
-	mov	rdx, 1 ; double digit number + enter
-	syscall
-
-	cmp	byte[location_buff], 10 ;checks if the byte is a newline char
-	jne	clearstr ; if not newline char, loops back to the next char
-	jmp	gstring
-
 loop: 
 	; method used for checking if the char is uppercased or lowercased 
+	mov	rdi, qword[string_buff]
 	mov 	al, 'A'
-	cmp		byte[string_buff + rcx], al
+	cmp		byte[rdi + rcx], al
 	jl		incr 
 
 	mov 	al, 'Z'
-	cmp 	byte[string_buff + rcx], al
+	cmp 	byte[rdi + rcx], al
 	jle		upper 
 
-	mov 	al, 97
-	cmp		byte[string_buff + rcx], al
+	mov 	al, 'a'
+	cmp		byte[rdi + rcx], al
 	jl		incr
 
-	mov 	al, 122
-	cmp		byte[string_buff + rcx], al
+	mov 	al, 'z'
+	cmp		byte[rdi + rcx], al
 	jle		lower
 	jmp 	incr 
 
 incr:
 	; used for iterating through the original sentence
 	add		rcx, 1 ; moves which char the r8 is on, if r9 = 2, then r8 will be on the 3rd char, use for iterating through char spot
-	cmp		rcx, r10
+	cmp		rcx, qword[string_len]
 	jl 		loop; loop for getting char spot
 	ret
 
 upper:
 	; adds the shift to the ascii value, if value is greater than 90 goes to subalpha
 	mov 	rax, qword[cipher_offset]
-	add		byte[string_buff + rcx], al
-	mov 	al, 90
-	cmp		byte[string_buff + rcx], al
+	add		byte[rdi + rcx], al
+	mov 	al, 'Z'
+	cmp		byte[rdi + rcx], al
 	ja		subalpha
 	jmp 	incr
 
 lower:
 	; add the shift to the ascii value, if value is greater than 122 goes to subalpha
 	mov 	rax, qword[cipher_offset]
-	add		byte[string_buff + rcx], al
-	mov 	al, 122
-	cmp		byte[string_buff + rcx], al
+	add		byte[rdi + rcx], al
+	mov 	al, 'z'
+	cmp		byte[rdi + rcx], al
 	ja 		subalpha
 	jmp 	incr
 
 subalpha:
 	; subtracts 26 from the ascii value to loop back to the start of the alphabet
 	mov 	al, 26
-	sub		byte[string_buff + rcx], al
+	sub		byte[rdi + rcx], al
 	jmp 	incr
 
 
