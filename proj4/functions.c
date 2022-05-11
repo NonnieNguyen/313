@@ -109,8 +109,10 @@ void decrypt(char *arr[]){ // f or F
             if (letter >= 97 && letter <= 122){
                 
                 // checks if the ascii value of the letter would go out of range 
-                if(!(letter+shift >= 97 && letter+shift <= 122)){
-                    letter = letter - 26;
+                if(shift < 0){
+                    if(!(letter+shift >= 97 && letter+shift <= 122)){
+                        letter = letter - 26;
+                    }
                 }
                 
                 letter = letter + shift;                
