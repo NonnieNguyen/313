@@ -22,9 +22,6 @@ int read(char *arr[], int position){ //r or R
     printf("Enter your message: ");
     scanf("%[^\n]s", &word);
 
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF) { }
-
     int Length = strlen(word);
 
     // if statments check if the first Letter is uppercase, and the char before newline is ! ? .
@@ -39,7 +36,6 @@ int read(char *arr[], int position){ //r or R
             // if the message is added checks which message was changed and moves to the next one
             if (position == 9) position = 0; 
             else position++;
-            //printf("\n");
         }
         
         else {
@@ -94,7 +90,6 @@ void decrypt(char *arr[]){ // f or F
     // for loop used for checking the 5 the letters being compared
     for (int z = 0; z < 5; z++){
         shift = FREQ[z] - Most_Used[z];
-        //printf("Shift : %d \n",shift);
 
         // for loop used for iterating through the message
         for(int y = 0; y < Length; y++){
@@ -110,7 +105,7 @@ void decrypt(char *arr[]){ // f or F
                 
                 // checks if the ascii value of the letter would go out of range 
                 if(!(letter+shift >= 97 && letter+shift <= 122) && shift > 0){
-                    letter = letter - 26;
+                   letter = letter - 26;
                 }
                 
                 letter = letter + shift;                
@@ -120,9 +115,7 @@ void decrypt(char *arr[]){ // f or F
 
                 else if (letter < 97){
                     letter = letter + 26;
-                }
-
-                
+		}                
             }            
 
             printf("%c", letter);
@@ -134,10 +127,13 @@ void decrypt(char *arr[]){ // f or F
         
         printf("\n");
     }
+
 }
 
-void deallocate(char *arr[]){
-    for (int i = 0; i < 10; i++) {
-        free(arr[i]);
+// function used to deallocate the memory used in the array
+void Deallocate(char *arr[]){
+    // for loop used for iterating through the array
+    for (int z = 0; z < 10; z++){
+        free(arr[z]);
     }
 }
