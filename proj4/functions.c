@@ -22,9 +22,6 @@ int read(char *arr[], int position){ //r or R
     printf("Enter your message: ");
     scanf("%[^\n]s", &word);
 
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF) { }
-
     int Length = strlen(word);
 
     // if statments check if the first Letter is uppercase, and the char before newline is ! ? .
@@ -39,7 +36,6 @@ int read(char *arr[], int position){ //r or R
             // if the message is added checks which message was changed and moves to the next one
             if (position == 9) position = 0; 
             else position++;
-            //printf("\n");
         }
         
         else {
