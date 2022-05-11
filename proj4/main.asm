@@ -28,7 +28,7 @@ new_line	db	10
 
 arr resq ARR_LEN
 
-location_buff:	resb	3
+location_buff:	resb	2
 index:	resb	8
 
 menu_buff:      resb    2
@@ -176,49 +176,28 @@ gstring:
 	mov		rax, 0	;stores the original string
 	mov		rdi, 0
 	mov		rsi, location_buff
-	mov		rdx, 3
+	mov		rdx, 2
 	syscall
-    
-    mov rax, 1
-    mov rdi, 1
-    mov rsi, arr[1]
-    mov rdx, 38
 
-	cmp	byte[location_buff + 1], 10 ;checks if the second byte is a newline char
-	je	tofix ;jumps to method for converting num_buff to numbers
-	cmp	byte[location_buff + 2], 10 ; checks if the third byte is a newline char
-	jne	toclear; jumps to method for clearing the shift variable if its not a newline char
+	cmp byte[location_buff + 1], 10
+    jne toclear
 
 tofix:
-	; converts num_buff to numbers
-	; checking if correct value was input
-	xor 	rax, rax
-	sub 	byte[location_buff], 48 ;subtracting the first byte of num_buff = '1' by 48
-	sub 	byte[location_buff + 1], 48 ;subtracting the second byte of numbuff = '2' by 48
-	mov 	al, byte[location_buff] ;move the first byte of num_buff into the last byte of rax(al)
-	cmp 	byte[location_buff + 1], 0
-	jl 		storeindex
+    sub byte[location_buff], 48
+    xor rax, rax
+    cmp byte[location_buff], al
+    jl  gstring
 
-	mov 	rdx, 10 ;set rdx to 10
-	mul 	rdx ;al = al * rdx
-	xor 	rdx, rdx
-	mov 	dl, byte[location_buff + 1] ;sets the last byte of rdx to the second byte of num_buff(2)
-	add 	rax, rdx ;adds 2 to rax(10) to make it 12
+    mov al, 9
+    cmp byte[location_buff], al
+    jg  gstring
 
 storeindex:
+    mov al, byte[location_buff]
 	mov	qword[index], rax
-
-	mov rax, 1
-	cmp qword[index], rax
-	jl 	gstring
-
-	mov rax, 10
-	cmp qword[index], rax
-	jg	gstring
 
 	mov	rax, 8
 	mul	qword[index]
-	sub	rax, 8
 	mov	qword[index], rax
 
 callceaser:

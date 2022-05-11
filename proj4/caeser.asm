@@ -18,8 +18,6 @@ new_line	db	10
 	section .bss
 arr	resq	10
 string_buff:	resb	8
-location_buff:	resb	3
-index:	resb	8
 string_len:	resb	8
 
 num_buff:		resb	3
@@ -86,14 +84,6 @@ start:
 	ret
 
 getlen:
-	;push	rcx
-	;mov		rax, 1	;print encrypted message
-	;mov 	rdi, 1
-	;mov		sil, byte[string_buff + rcx]
-	;mov		rdx, 1
-	;syscall
-	;pop	rcx
-
 	mov	rdi, qword[string_buff]
 	add	rdi, rcx
 	cmp	byte[rdi], 0
@@ -216,17 +206,3 @@ subalpha:
 	mov 	al, 26
 	sub		byte[rdi + rcx], al
 	jmp 	incr
-
-
-
-;exit:
-	; prints a new line
-	;mov		rax, 1
-	;mov		rdi, 1
-	;mov		rsi, new_line
-	;mov		rdx, 1
-	;syscall
-
-	;mov 	rax, 60
-	;xor 	rdi, rdi
-	;syscall
