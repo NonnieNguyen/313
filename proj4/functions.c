@@ -131,7 +131,7 @@ void decrypt(char *arr[]){ // f or F
 }
 
 // function used to deallocate the memory used in the array
-void Deallocate(char *arr[]){
+void deallocate(char *arr[]){
     // for loop used for iterating through the array
     for (int z = 0; z < 10; z++){
         free(arr[z]);
